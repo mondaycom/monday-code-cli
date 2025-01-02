@@ -1,15 +1,15 @@
 app:
   scopes:
-    - name: "test"
-      type: "user"
+    - name: 'test'
+      type: 'user'
       permissions:
-        - "read"
-        - "write"
+        - 'read'
+        - 'write'
   hosting:
     cdn:
       type: upload
-      path: "./build"
+      path: './build'
     server:
       type: upload
-      path: "./server"
+      path: './server'
 version: 1.0.0

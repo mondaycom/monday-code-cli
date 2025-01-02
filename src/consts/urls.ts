@@ -118,3 +118,15 @@ export const promoteAppUrl = (appId: AppId): string => {
 export const pullPromoteStatusUrl = (path: string): string => {
   return `${BASE_URL}/${path}`;
 };
+
+export const createAppFromManifestUrl = (): string => {
+  return `${BASE_APPS_URL}/manifest`;
+};
+
+export const updateAppFromManifestUrl = (appId: AppId): string => {
+  return `${BASE_APPS_URL}/${appId}/manifest`;
+};
+
+export const exportAppManifestUrl = (appId: AppId): string => {
+  return `${BASE_APPS_URL}/${appId}/manifest?zipBase64=true`;
+};

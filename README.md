@@ -16,7 +16,7 @@ $ npm install -g @mondaycom/apps-cli
 $ mapps COMMAND
 running command...
 $ mapps (--version)
-@mondaycom/apps-cli/2.3.5 darwin-arm64 node-v18.12.1
+@mondaycom/apps-cli/4.3.2 darwin-arm64 node-v18.12.1
 $ mapps --help [COMMAND]
 USAGE
   $ mapps COMMAND
@@ -40,10 +40,14 @@ USAGE
 * [`mapps code:env`](#mapps-codeenv)
 * [`mapps code:logs`](#mapps-codelogs)
 * [`mapps code:push`](#mapps-codepush)
+* [`mapps code:secret`](#mapps-codesecret)
 * [`mapps code:status`](#mapps-codestatus)
 * [`mapps help [COMMANDS]`](#mapps-help-commands)
 * [`mapps init`](#mapps-init)
+* [`mapps manifest:export`](#mapps-manifestexport)
+* [`mapps manifest:import`](#mapps-manifestimport)
 * [`mapps storage:export`](#mapps-storageexport)
+* [`mapps storage:remove-data`](#mapps-storageremove-data)
 * [`mapps storage:search`](#mapps-storagesearch)
 * [`mapps tunnel:create`](#mapps-tunnelcreate)
 
@@ -63,7 +67,7 @@ DESCRIPTION
   [@mondaydotcomorg/setup-api](https://github.com/mondaycom/monday-graphql-api/tree/main/packages/setup-api)
 ```
 
-_See code: [src/commands/api/generate.ts](https://github.com/mondaycom/monday-apps-cli/blob/v2.3.5/src/commands/api/generate.ts)_
+_See code: [src/commands/api/generate.ts](https://github.com/mondaycom/monday-apps-cli/blob/v4.3.2/src/commands/api/generate.ts)_
 
 ## `mapps app-features:build`
 
@@ -93,7 +97,7 @@ EXAMPLES
   $ mapps app-features:build -a APP_ID -i APP_VERSION_ID -d APP_FEATURE_ID  -t BUILD_TYPE -u CUSTOM_URL
 ```
 
-_See code: [src/commands/app-features/build.ts](https://github.com/mondaycom/monday-apps-cli/blob/v2.3.5/src/commands/app-features/build.ts)_
+_See code: [src/commands/app-features/build.ts](https://github.com/mondaycom/monday-apps-cli/blob/v4.3.2/src/commands/app-features/build.ts)_
 
 ## `mapps app-features:create`
 
@@ -120,7 +124,7 @@ EXAMPLES
   $ mapps app-features:create -a APP_ID -i APP_VERSION_ID -t APP-FEATURE-TYPE
 ```
 
-_See code: [src/commands/app-features/create.ts](https://github.com/mondaycom/monday-apps-cli/blob/v2.3.5/src/commands/app-features/create.ts)_
+_See code: [src/commands/app-features/create.ts](https://github.com/mondaycom/monday-apps-cli/blob/v4.3.2/src/commands/app-features/create.ts)_
 
 ## `mapps app-features:list`
 
@@ -145,7 +149,7 @@ EXAMPLES
   $ mapps app-features:list -a APP_ID -i APP_VERSION_ID
 ```
 
-_See code: [src/commands/app-features/list.ts](https://github.com/mondaycom/monday-apps-cli/blob/v2.3.5/src/commands/app-features/list.ts)_
+_See code: [src/commands/app-features/list.ts](https://github.com/mondaycom/monday-apps-cli/blob/v4.3.2/src/commands/app-features/list.ts)_
 
 ## `mapps app-version:builds`
 
@@ -169,7 +173,7 @@ EXAMPLES
   $ mapps app-version:builds -i APP_VERSION_ID
 ```
 
-_See code: [src/commands/app-version/builds.ts](https://github.com/mondaycom/monday-apps-cli/blob/v2.3.5/src/commands/app-version/builds.ts)_
+_See code: [src/commands/app-version/builds.ts](https://github.com/mondaycom/monday-apps-cli/blob/v4.3.2/src/commands/app-version/builds.ts)_
 
 ## `mapps app-version:list`
 
@@ -193,7 +197,7 @@ EXAMPLES
   $ mapps app-version:list
 ```
 
-_See code: [src/commands/app-version/list.ts](https://github.com/mondaycom/monday-apps-cli/blob/v2.3.5/src/commands/app-version/list.ts)_
+_See code: [src/commands/app-version/list.ts](https://github.com/mondaycom/monday-apps-cli/blob/v4.3.2/src/commands/app-version/list.ts)_
 
 ## `mapps app:create`
 
@@ -220,7 +224,7 @@ EXAMPLES
   $ mapps app:create -n NEW_APP_NAME
 ```
 
-_See code: [src/commands/app/create.ts](https://github.com/mondaycom/monday-apps-cli/blob/v2.3.5/src/commands/app/create.ts)_
+_See code: [src/commands/app/create.ts](https://github.com/mondaycom/monday-apps-cli/blob/v4.3.2/src/commands/app/create.ts)_
 
 ## `mapps app:deploy`
 
@@ -228,7 +232,7 @@ Deploy an app using manifest file.
 
 ```
 USAGE
-  $ mapps app:deploy [--verbose] [--print-command] [-d <value>] [-a <value>] [-v <value>] [-f]
+  $ mapps app:deploy [--verbose] [--print-command] [-d <value>] [-a <value>] [-v <value>] [-f] [-z us|eu|au]
 
 FLAGS
   -a, --appId=<value>          App id (will use the latest draft version)
@@ -236,6 +240,8 @@ FLAGS
                                working directory.
   -f, --force                  Force push to latest version (draft or live)
   -v, --appVersionId=<value>   App version id
+  -z, --region=<option>        Region to use
+                               <options: us|eu|au>
 
 GLOBAL FLAGS
   --print-command  Print the command that was executed (optional).
@@ -248,7 +254,7 @@ EXAMPLES
   $ mapps app:deploy
 ```
 
-_See code: [src/commands/app/deploy.ts](https://github.com/mondaycom/monday-apps-cli/blob/v2.3.5/src/commands/app/deploy.ts)_
+_See code: [src/commands/app/deploy.ts](https://github.com/mondaycom/monday-apps-cli/blob/v4.3.2/src/commands/app/deploy.ts)_
 
 ## `mapps app:list`
 
@@ -269,7 +275,7 @@ EXAMPLES
   $ mapps app:list
 ```
 
-_See code: [src/commands/app/list.ts](https://github.com/mondaycom/monday-apps-cli/blob/v2.3.5/src/commands/app/list.ts)_
+_See code: [src/commands/app/list.ts](https://github.com/mondaycom/monday-apps-cli/blob/v4.3.2/src/commands/app/list.ts)_
 
 ## `mapps autocomplete [SHELL]`
 
@@ -309,14 +315,16 @@ Manage environment variables for your app hosted on monday-code.
 ```
 USAGE
   $ mapps code:env [--verbose] [--print-command] [-i <value>] [-m list-keys|set|delete] [-k <value>] [-v
-    <value>]
+    <value>] [-z us|eu|au]
 
 FLAGS
-  -i, --appId=<value>  The id of the app to manage environment variables for
-  -k, --key=<value>    variable key [required for set and delete]]
-  -m, --mode=<option>  management mode
-                       <options: list-keys|set|delete>
-  -v, --value=<value>  variable value [required for set]
+  -i, --appId=<value>    The id of the app to manage environment variables for
+  -k, --key=<value>      variable key [required for set and delete]]
+  -m, --mode=<option>    management mode
+                         <options: list-keys|set|delete>
+  -v, --value=<value>    variable value [required for set]
+  -z, --region=<option>  Region to use
+                         <options: us|eu|au>
 
 GLOBAL FLAGS
   --print-command  Print the command that was executed (optional).
@@ -329,7 +337,7 @@ EXAMPLES
   $ mapps code:env
 ```
 
-_See code: [src/commands/code/env.ts](https://github.com/mondaycom/monday-apps-cli/blob/v2.3.5/src/commands/code/env.ts)_
+_See code: [src/commands/code/env.ts](https://github.com/mondaycom/monday-apps-cli/blob/v4.3.2/src/commands/code/env.ts)_
 
 ## `mapps code:logs`
 
@@ -338,7 +346,7 @@ Stream logs
 ```
 USAGE
   $ mapps code:logs [--verbose] [--print-command] [-i <value>] [-t <value>] [-s <value>] [-f <value>] [-e
-    <value>] [-r <value>]
+    <value>] [-r <value>] [-z us|eu|au]
 
 FLAGS
   -e, --logsEndDate=<value>        End date (MM/DD/YYYY HH:mm) e.g. "03/25/1983 16:45" [supported only if
@@ -350,6 +358,8 @@ FLAGS
                                    eventSource=live]
   -s, --eventSource=<value>        Source: "live" for live events, "History" for fetching events from the past
   -t, --logsType=<value>           Logs type: "http" for http events, "console" for stdout
+  -z, --region=<option>            Region to use
+                                   <options: us|eu|au>
 
 GLOBAL FLAGS
   --print-command  Print the command that was executed (optional).
@@ -362,7 +372,7 @@ EXAMPLES
   $ mapps code:logs -i APP_VERSION_ID -t LOGS_TYPE
 ```
 
-_See code: [src/commands/code/logs.ts](https://github.com/mondaycom/monday-apps-cli/blob/v2.3.5/src/commands/code/logs.ts)_
+_See code: [src/commands/code/logs.ts](https://github.com/mondaycom/monday-apps-cli/blob/v4.3.2/src/commands/code/logs.ts)_
 
 ## `mapps code:push`
 
@@ -370,7 +380,7 @@ Push your project to get hosted on monday-code.
 
 ```
 USAGE
-  $ mapps code:push [--verbose] [--print-command] [-d <value>] [-a <value>] [-i <value>] [-f]
+  $ mapps code:push [--verbose] [--print-command] [-d <value>] [-a <value>] [-i <value>] [-f] [-z us|eu|au]
 
 FLAGS
   -a, --appId=<value>          Please enter app id:
@@ -378,6 +388,8 @@ FLAGS
                                working directory.
   -f, --force                  Force push to live version
   -i, --appVersionId=<value>   Please enter the app version id of your app:
+  -z, --region=<option>        Region to use
+                               <options: us|eu|au>
 
 GLOBAL FLAGS
   --print-command  Print the command that was executed (optional).
@@ -394,7 +406,38 @@ EXAMPLES
   $ mapps code:push -a APP_ID_TO_PUSH
 ```
 
-_See code: [src/commands/code/push.ts](https://github.com/mondaycom/monday-apps-cli/blob/v2.3.5/src/commands/code/push.ts)_
+_See code: [src/commands/code/push.ts](https://github.com/mondaycom/monday-apps-cli/blob/v4.3.2/src/commands/code/push.ts)_
+
+## `mapps code:secret`
+
+Manage secret variables for your app hosted on monday-code.
+
+```
+USAGE
+  $ mapps code:secret [--verbose] [--print-command] [-i <value>] [-m list-keys|set|delete] [-k <value>] [-v
+    <value>] [-z us|eu|au]
+
+FLAGS
+  -i, --appId=<value>    The id of the app to manage secret variables for
+  -k, --key=<value>      variable key [required for set and delete]]
+  -m, --mode=<option>    management mode
+                         <options: list-keys|set|delete>
+  -v, --value=<value>    variable value [required for set]
+  -z, --region=<option>  Region to use
+                         <options: us|eu|au>
+
+GLOBAL FLAGS
+  --print-command  Print the command that was executed (optional).
+  --verbose        Print advanced logs (optional).
+
+DESCRIPTION
+  Manage secret variables for your app hosted on monday-code.
+
+EXAMPLES
+  $ mapps code:secret
+```
+
+_See code: [src/commands/code/secret.ts](https://github.com/mondaycom/monday-apps-cli/blob/v4.3.2/src/commands/code/secret.ts)_
 
 ## `mapps code:status`
 
@@ -402,10 +445,12 @@ Status of a specific project hosted on monday-code.
 
 ```
 USAGE
-  $ mapps code:status [--verbose] [--print-command] [-i <value>]
+  $ mapps code:status [--verbose] [--print-command] [-i <value>] [-z us|eu|au]
 
 FLAGS
   -i, --appVersionId=<value>  Please enter the app version id of your app:
+  -z, --region=<option>       Region to use
+                              <options: us|eu|au>
 
 GLOBAL FLAGS
   --print-command  Print the command that was executed (optional).
@@ -418,7 +463,7 @@ EXAMPLES
   $ mapps code:status -i APP_VERSION_ID
 ```
 
-_See code: [src/commands/code/status.ts](https://github.com/mondaycom/monday-apps-cli/blob/v2.3.5/src/commands/code/status.ts)_
+_See code: [src/commands/code/status.ts](https://github.com/mondaycom/monday-apps-cli/blob/v4.3.2/src/commands/code/status.ts)_
 
 ## `mapps help [COMMANDS]`
 
@@ -463,7 +508,59 @@ EXAMPLES
   $ mapps init -t SECRET_TOKEN
 ```
 
-_See code: [src/commands/init/index.ts](https://github.com/mondaycom/monday-apps-cli/blob/v2.3.5/src/commands/init/index.ts)_
+_See code: [src/commands/init/index.ts](https://github.com/mondaycom/monday-apps-cli/blob/v4.3.2/src/commands/init/index.ts)_
+
+## `mapps manifest:export`
+
+export manifest.
+
+```
+USAGE
+  $ mapps manifest:export [--verbose] [--print-command] [-a <value>] [-v <value>]
+
+FLAGS
+  -a, --appId=<value>         App id (will export the live version)
+  -v, --appVersionId=<value>  App version id
+
+GLOBAL FLAGS
+  --print-command  Print the command that was executed (optional).
+  --verbose        Print advanced logs (optional).
+
+DESCRIPTION
+  export manifest.
+
+EXAMPLES
+  $ mapps manifest:export
+```
+
+_See code: [src/commands/manifest/export.ts](https://github.com/mondaycom/monday-apps-cli/blob/v4.3.2/src/commands/manifest/export.ts)_
+
+## `mapps manifest:import`
+
+Import manifest.
+
+```
+USAGE
+  $ mapps manifest:import [--verbose] [--print-command] [-p <value>] [-a <value>] [-v <value>] [-n]
+
+FLAGS
+  -a, --appId=<value>         App id (will create new draft version)
+  -n, --newApp                Create new app
+  -p, --manifestPath=<value>  Path of you manifest file in your machine
+  -v, --appVersionId=<value>  App version id to override
+
+GLOBAL FLAGS
+  --print-command  Print the command that was executed (optional).
+  --verbose        Print advanced logs (optional).
+
+DESCRIPTION
+  Import manifest.
+
+EXAMPLES
+  $ mapps manifest:import
+```
+
+_See code: [src/commands/manifest/import.ts](https://github.com/mondaycom/monday-apps-cli/blob/v4.3.2/src/commands/manifest/import.ts)_
 
 ## `mapps storage:export`
 
@@ -490,7 +587,33 @@ EXAMPLES
   $ mapps storage:export -a APP_ID -c CLIENT_ACCOUNT_ID -d FILE_FULL_PATH -f FILE_FORMAT
 ```
 
-_See code: [src/commands/storage/export.ts](https://github.com/mondaycom/monday-apps-cli/blob/v2.3.5/src/commands/storage/export.ts)_
+_See code: [src/commands/storage/export.ts](https://github.com/mondaycom/monday-apps-cli/blob/v4.3.2/src/commands/storage/export.ts)_
+
+## `mapps storage:remove-data`
+
+Completely remove all the storage data for specific customer account.
+
+```
+USAGE
+  $ mapps storage:remove-data [--verbose] [--print-command] [-a <value>] [-c <value>] [-f]
+
+FLAGS
+  -a, --appId=<value>            Select the app that you wish to remove account data for
+  -c, --clientAccountId=<value>  Client account id (number)
+  -f, --force                    Skip the confirmation step
+
+GLOBAL FLAGS
+  --print-command  Print the command that was executed (optional).
+  --verbose        Print advanced logs (optional).
+
+DESCRIPTION
+  Completely remove all the storage data for specific customer account.
+
+EXAMPLES
+  $ mapps storage:remove-data -a APP_ID -c CLIENT_ACCOUNT_ID
+```
+
+_See code: [src/commands/storage/remove-data.ts](https://github.com/mondaycom/monday-apps-cli/blob/v4.3.2/src/commands/storage/remove-data.ts)_
 
 ## `mapps storage:search`
 
@@ -516,7 +639,7 @@ EXAMPLES
   $ mapps storage:search -a APP_ID -c CLIENT_ACCOUNT_ID -t TERM
 ```
 
-_See code: [src/commands/storage/search.ts](https://github.com/mondaycom/monday-apps-cli/blob/v2.3.5/src/commands/storage/search.ts)_
+_See code: [src/commands/storage/search.ts](https://github.com/mondaycom/monday-apps-cli/blob/v4.3.2/src/commands/storage/search.ts)_
 
 ## `mapps tunnel:create`
 
@@ -547,5 +670,5 @@ EXAMPLES
   $ mapps tunnel:create -p PORT_FOR_TUNNEL -a APP_ID_FOR_TUNNEL
 ```
 
-_See code: [src/commands/tunnel/create.ts](https://github.com/mondaycom/monday-apps-cli/blob/v2.3.5/src/commands/tunnel/create.ts)_
+_See code: [src/commands/tunnel/create.ts](https://github.com/mondaycom/monday-apps-cli/blob/v4.3.2/src/commands/tunnel/create.ts)_
 <!-- commandsstop -->

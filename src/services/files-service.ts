@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
+import AdmZip from 'adm-zip';
 import archiver from 'archiver';
 import glob from 'glob';
 import parseGitIgnore from 'parse-gitignore';
@@ -23,6 +24,41 @@ export const readFileData = (filePath: string): Buffer => {
 
 export const readZipFileAsBuffer = (filePath: string): Buffer => {
   return fs.readFileSync(filePath);
+};
+
+/**
+ * Decompress a ZIP buffer and extract files to the output directory.
+ * @param buffer - The ZIP buffer.
+ * @param outputDir - The directory where files should be extracted.
+ */
+export const decompressZipBufferToFiles = async (buffer: Buffer, outputDir: string): Promise<void> => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
+  const zip = new AdmZip(buffer);
+
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call
+  zip.extractAllTo(outputDir, true);
+};
+
+export const compressFilesToZip = async (files: string[]): Promise<string> => {
+  const tempZipPath = 'temp.zip';
+  const output = fs.createWriteStream(tempZipPath);
+  const archive = archiver('zip', { zlib: { level: 9 } });
+
+  archive.pipe(output);
+  for (const file of files) {
+    const fileName = path.basename(file);
+    archive.file(file, { name: fileName });
+  }
+
+  await archive.finalize();
+  await new Promise<void>(resolve => {
+    output.on('close', () => resolve());
+  });
+  return tempZipPath;
 };
 
 export const compressBuildToZip = async (dirPath: string) => {
@@ -241,4 +277,18 @@ const compressDirectoryToTarGz = async (
   logger.debug(`${DEBUG_TAG} - created successfully`);
 
   return archivePath;
+};
+
+/**
+ * Writes a buffer to a file at the specified path.
+ * @param filePath - The path where the file will be created.
+ * @param dataBuffer - The buffer containing the file data.
+ */
+export const writeBufferToFile = (filePath: string, dataBuffer: Buffer): void => {
+  try {
+    fs.writeFileSync(filePath, dataBuffer);
+  } catch (error) {
+    logger.error(`Failed to write file to ${filePath}:`, error);
+    throw new Error(`Failed to write file to ${filePath}`);
+  }
 };

@@ -99,7 +99,7 @@ export async function execute<T extends BaseResponseHttpMetaData>(
     });
 
     logger.debug({ res: response }, DEBUG_TAG);
-    const result = { ...response.data, statusCode: 200, headers: response.headers };
+    const result = { ...response.data, statusCode: 200, headers: response.headers, data: response.data };
     const validatedResult = validateResponseIfError(result, schemaValidator);
     return (validatedResult as T) || result;
   } catch (error: any | Error | AxiosError) {
